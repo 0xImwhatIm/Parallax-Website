@@ -6,6 +6,14 @@ var fish2move = 100;
 var fish3move = 900;
 var fish4move = 1200;
 
+// base positions for vertical swimming (in percentages)
+const fishBaseHeights = {
+    fish1: 0,
+    fish2: 32,
+    fish3: 60,
+    fish4: 87,
+};
+
 if (screen.width < 400) {
 
     //Change transformation duration and translatey for mobile view
@@ -49,11 +57,11 @@ window.addEventListener('scroll', function () {
         splash.style.top = 20 + value * -0.3 + 'px';
     }
 
-    //Move fishes horizontally
-    fish1.style.right = (value - 100) * 1 + 'px';
-    fish2.style.left = (value - fish2move) * 1 + 'px';
-    fish3.style.right = (value - fish3move) * 1 + 'px';
-    fish4.style.left = (value - fish4move) * 1 + 'px';
+    //Move fishes vertically
+    fish1.style.top = `calc(${fishBaseHeights.fish1}% + ${(value - 100) * 0.35}px)`;
+    fish2.style.top = `calc(${fishBaseHeights.fish2}% + ${(value - fish2move) * -0.25}px)`;
+    fish3.style.top = `calc(${fishBaseHeights.fish3}% + ${(value - fish3move) * 0.3}px)`;
+    fish4.style.top = `calc(${fishBaseHeights.fish4}% + ${(value - fish4move) * -0.2}px)`;
 })
 
 
